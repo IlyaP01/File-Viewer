@@ -1,0 +1,19 @@
+#include "menuDefs.h"
+
+FileViewerMenu MENU
+{
+    POPUP "File"
+    {
+        MENUITEM "Open", MENU_OPEN_FILE
+        MENUITEM "Exit", MENU_EXIT
+    }
+    POPUP "View"
+    {
+	POPUP "Mode"
+	{
+            MENUITEM "Raw", MENU_RAW_MODE
+            MENUITEM "Layout", MENU_LAYOUT_MODE
+	}
+    }
+    MENUITEM "Help", MENU_HELP
+}
