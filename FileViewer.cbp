@@ -42,26 +42,26 @@
 			<Add library="kernel32" />
 			<Add library="comctl32" />
 		</Linker>
-		<Unit filename="FileViewer.rc">
+		<Unit filename="src/FileViewer.rc">
 			<Option compilerVar="WINDRES" />
 		</Unit>
-		<Unit filename="callbacks/callbacks.c">
+		<Unit filename="src/callbacks/callbacks.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="callbacks/callbacks.h" />
-		<Unit filename="error.h" />
-		<Unit filename="main.c">
+		<Unit filename="src/callbacks/callbacks.h" />
+		<Unit filename="src/error.h" />
+		<Unit filename="src/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="menuDefs.h" />
-		<Unit filename="model/model.c">
+		<Unit filename="src/menuDefs.h" />
+		<Unit filename="src/model/model.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="model/model.h" />
-		<Unit filename="view/view.c">
+		<Unit filename="src/model/model.h" />
+		<Unit filename="src/view/view.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="view/view.h" />
+		<Unit filename="src/view/view.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

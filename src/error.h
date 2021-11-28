@@ -1,6 +1,9 @@
 #ifndef ERRORS
 #define ERRORS
 
+/*
+ * Error type
+ */
 typedef enum
 {
     SUCCESS,

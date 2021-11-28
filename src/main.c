@@ -89,28 +89,28 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
     switch (message)                  /* handle the messages */
     {
         case WM_DESTROY:
-            OnDestroy(hwnd, wParam, lParam, &model, &view);
+            OnDestroy(&model, &view);
             break;
         case WM_CREATE:
-            OnCreate(hwnd, wParam, lParam, &model, &view);
+            OnCreate(hwnd, &model, &view);
             break;
         case WM_SIZE:
-            OnSize(hwnd, wParam, lParam, &model, &view);
+            OnSize(hwnd, lParam, &view);
             break;
         case WM_MOUSEWHEEL:
-            OnMouseWheel(hwnd, wParam, lParam, &model, &view);
+            OnMouseWheel(hwnd, wParam);
             break;
         case WM_KEYDOWN:
-            OnKeyDown(hwnd, wParam, lParam, &model, &view);
+            OnKeyDown(hwnd, wParam, &view);
             break;
         case WM_COMMAND:
-            OnCommand(hwnd, wParam, lParam, &model, &view);
+            OnCommand(hwnd, wParam, &model, &view);
             break;
         case WM_VSCROLL:
-            OnVScroll(hwnd, wParam, lParam, &model, &view);
+            OnVScroll(hwnd, wParam, &view);
             break;
         case WM_HSCROLL:
-            OnHScroll(hwnd, wParam, lParam, &model, &view);
+            OnHScroll(hwnd, wParam, &view);
             break;
         case WM_PAINT:
             ViewDraw(&view);

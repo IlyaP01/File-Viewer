@@ -66,7 +66,7 @@ static error_t _openFile(HWND hwnd, model_t* model, view_t* view)
     return err;
 }
 
-void OnCreate(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* view)
+void OnCreate(HWND hwnd, model_t* model, view_t* view)
 {
     ModelInit(model);
     ViewInit(view, hwnd);
@@ -82,14 +82,14 @@ void OnCreate(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* v
     EnableMenuItem(GetMenu(hwnd), MENU_RAW_MODE, MF_GRAYED);
 }
 
-void OnDestroy(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* view)
+void OnDestroy(model_t* model, view_t* view)
 {
     ModelClear(model);
     ViewClear(view);
     PostQuitMessage (0);
 }
 
-void OnSize(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* view)
+void OnSize(HWND hwnd, LPARAM lParam, view_t* view)
 {
     int err = ViewSetWindowSize(view, LOWORD(lParam), HIWORD(lParam));
     if (err != SUCCESS)
@@ -103,7 +103,7 @@ void OnSize(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* vie
     _updateVScroll(hwnd, view);
 }
 
-void OnMouseWheel(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* view)
+void OnMouseWheel(HWND hwnd, WPARAM wParam)
 {
     if (GET_WHEEL_DELTA_WPARAM(wParam) < 0)
     {
@@ -117,7 +117,7 @@ void OnMouseWheel(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_
     }
 }
 
-void OnKeyDown(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* view)
+void OnKeyDown(HWND hwnd, WPARAM wParam, view_t* view)
 {
     switch (wParam)
     {
@@ -157,7 +157,7 @@ void OnKeyDown(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* 
     }
 }
 
-void OnCommand(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* view)
+void OnCommand(HWND hwnd, WPARAM wParam, model_t* model, view_t* view)
 {
     error_t err = NO_ERROR;
     switch (LOWORD(wParam))
@@ -200,7 +200,7 @@ void OnCommand(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* 
     UpdateWindow(hwnd);
 }
 
-void OnVScroll(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* view)
+void OnVScroll(HWND hwnd, WPARAM wParam, view_t* view)
 {
     switch (LOWORD (wParam))
     {
@@ -245,7 +245,7 @@ void OnVScroll(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* 
     UpdateWindow(hwnd);
 }
 
-void OnHScroll(HWND hwnd, WPARAM wParam, LPARAM lParam, model_t* model, view_t* view)
+void OnHScroll(HWND hwnd, WPARAM wParam, view_t* view)
 {
     switch (LOWORD(wParam)) {
         case SB_LINERIGHT:
