@@ -44,7 +44,7 @@ static void _recalcVScrollPos(view_t* view, char* prevPtr)
 
     unsigned long newPos = 0;
 
-    while (view->lines[newPos + 1] <= prevPtr)
+    while (newPos < view->numOfLines && view->lines[newPos + 1] <= prevPtr)
         ++newPos;
 
     view->vScrollPos = newPos;
@@ -138,7 +138,7 @@ static error_t _build(view_t* view)
     view->numOfLines = 0;
     free(view->lines);
 
-    int err = view->mode == RAW ? _buildRaw(view) : _buildLayout(view);
+    error_t err = view->mode == RAW ? _buildRaw(view) : _buildLayout(view);
 
     _recalcVScrollPos(view, prevPosPtr);
 
@@ -151,10 +151,13 @@ error_t ViewBindModel(view_t* view, const model_t* model)
     assert(model);
 
     view->model = model;
+
+    error_t err =  _build(view);
+
     view->vScrollPos = 0;
     view->hScrollPos = 0;
 
-    return _build(view);
+    return err;
 }
 
 error_t ViewSetMode(view_t* view, mode_t mode)
